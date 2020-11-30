@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://TheDumebi:" + password +"@cluster0.zrvvc.mongodb.net/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true})
+// mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
 const itemSchema = {
   name: {
@@ -110,6 +111,10 @@ app.post("/delete", function(req, res) {
 
 });
 
+app.get("/about", function(req, res){
+  res.render("about");
+});
+
 app.get("/:customListName", function(req, res) {
   const customListName = _.capitalize(req.params.customListName);
 
@@ -132,10 +137,6 @@ app.get("/:customListName", function(req, res) {
     }
   });
 
-});
-
-app.get("/about", function(req, res){
-  res.render("about");
 });
 
 let port = process.env.PORT;
