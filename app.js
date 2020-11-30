@@ -4,15 +4,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const _ = require('lodash');
+const keys = require(__dirname + "/keys.js");
 
 const app = express();
+let password = keys.password();
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://TheDumebi:" + password +"@cluster0.zrvvc.mongodb.net/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true})
 
 const itemSchema = {
   name: {
